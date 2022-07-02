@@ -184,7 +184,7 @@ def vigenere_cipher(message, key):
     
     # this for extending keylength if needed
     i = 0
-    while i <= keylength:
+    while i <= length:
         key += key[i % keylength]
         i +=1
         
@@ -267,13 +267,15 @@ def scytale_cipher(message, shift):
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     length = len(message)
     encoded =""
+        
     while length%shift !=0:
         message += "_"
+        length = len(message)
         
     for i in range(0,length):
         index = (i // shift) + (length // shift) * (i % shift)
-        scytale = message[index]
-        encoded += scytale
+        cipher = message[index]
+        encoded += cipher
 
     return encoded
 
