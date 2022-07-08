@@ -112,7 +112,7 @@ def tic_tac_toe(board):
         vertical_list.append(vertical)
     
     diagonal_ud = set([board[i][i] for i,v in enumerate(board)])
-    diagonal_du = set([board[a-1-i][i] for i,v in enumerate(board1)])
+    diagonal_du = set([board[a-1-i][i] for i,v in enumerate(board)])
     
     #checking the set if there's a winner (we know there is a winner if in the list there is a set that has a length of 1)
     for y in range(0,len(horizontal_list)):
@@ -177,29 +177,29 @@ def eta(first_stop, second_stop, route_map):
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     travel_time = 0
     
-    if (first_stop,second_stop) in legs:
-        time = legs[(first_stop,second_stop)]['travel_time_mins']
+    if (first_stop,second_stop) in route_map:
+        time = route_map[(first_stop,second_stop)]['travel_time_mins']
         travel_time = time
 
     else:
-        x = legs.keys() 
+        x = route_map.keys() 
         y = list(x)
         
-        for i in range(0,len(legs)):
+        for i in range(0,len(route_map)):
                 if y[i][0] is first_stop:
-                    time = legs[y[i]]['travel_time_mins']
+                    time = route_map[y[i]]['travel_time_mins']
                     travel_time += time
                     i+=1
-                    if i >= len(legs):
+                    if i >= len(route_map):
                             i = 0
                     while y[i][1] is not second_stop:
-                        time = legs[y[i]]['travel_time_mins']
+                        time = route_map[y[i]]['travel_time_mins']
                         travel_time += time
                         i+=1
-                        if i >= len(legs):
+                        if i >= len(route_map):
                             i = 0
                 elif y[i][1] is second_stop:
-                    time = legs[y[i]]['travel_time_mins']
+                    time = route_map[y[i]]['travel_time_mins']
                     travel_time += time      
                 
     return travel_time
