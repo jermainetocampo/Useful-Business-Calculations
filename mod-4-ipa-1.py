@@ -182,24 +182,17 @@ def eta(first_stop, second_stop, route_map):
         travel_time = time
 
     else:
-        x = route_map.keys() 
-        y = list(x)
+        length = len(route_map)
+        start = [pos[0] for pos in route_map]
+        end = [pos[1] for pos in route_map]
+        i = start.index(first_stop)
+
         
-        for i in range(0,len(route_map)):
-                if y[i][0] is first_stop:
-                    time = route_map[y[i]]['travel_time_mins']
-                    travel_time += time
-                    i+=1
-                    if i >= len(route_map):
-                            i = 0
-                    while y[i][1] is not second_stop:
-                        time = route_map[y[i]]['travel_time_mins']
-                        travel_time += time
-                        i+=1
-                        if i >= len(route_map):
-                            i = 0
-                elif y[i][1] is second_stop:
-                    time = route_map[y[i]]['travel_time_mins']
-                    travel_time += time      
-                
+        while True:
+            while i >= length:
+                i = length - i
+            travel_time += route_map[start[i],end[i]]['travel_time_mins']
+            if end[i] == second_stop:
+                break
+            i += 1
     return travel_time
